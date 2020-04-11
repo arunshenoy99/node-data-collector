@@ -2,6 +2,7 @@ const express = require('express')
 const hbs = require('hbs')
 const path = require('path')
 
+const userRouter = require('./routers/users')
 require('./db/mongoose')
 
 const app = express()
@@ -16,6 +17,7 @@ hbs.registerPartials(partialsPath)
 
 app.use(express.json())
 app.use(express.static(publicPath))
+app.use(userRouter)
 
 app.get('', (req, res) => {
     res.send('Welcome')
