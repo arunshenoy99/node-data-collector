@@ -1,6 +1,7 @@
 const express = require('express')
 const hbs = require('hbs')
 const path = require('path')
+const cookieParser = require('cookie-parser')
 
 const userRouter = require('./routers/users')
 require('./db/mongoose')
@@ -17,6 +18,7 @@ hbs.registerPartials(partialsPath)
 
 app.use(express.json())
 app.use(express.static(publicPath))
+app.use(cookieParser())
 app.use(userRouter)
 
 app.get('', (req, res) => {
