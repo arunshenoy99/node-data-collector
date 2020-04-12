@@ -20,7 +20,9 @@ app.use(express.static(publicPath))
 app.use(userRouter)
 
 app.get('', (req, res) => {
-    res.send('Welcome')
+    res.render('index', {
+        title: 'Welcome !'
+    })
 })
 
 
