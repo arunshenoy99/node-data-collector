@@ -2,6 +2,7 @@ const $signupForm = document.querySelector('#signup-form')
 const $nameInput = $signupForm.querySelector('#name-input')
 const $emailInput = $signupForm.querySelector('#email-input')
 const $passwordInput = $signupForm.querySelector('#password-input')
+const $statusPara = document.querySelector('#status')
 $signupForm.addEventListener('submit', (e) => {
     e.preventDefault()
     const name = $nameInput.value
@@ -10,7 +11,7 @@ $signupForm.addEventListener('submit', (e) => {
     const user = { name, email, password}
     postData('http://localhost:3000/users', user)
     .then((response) => {
-        console.log(response)
+        window.location.href = 'http://localhost:3000/users/me'
     })
     .catch((e) => {
         console.log(e)

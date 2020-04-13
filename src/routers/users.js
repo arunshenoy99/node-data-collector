@@ -13,6 +13,7 @@ router.post('/users', async (req, res) => {
         const token = await user.generateAuthToken()
         res.cookie('token', token).status(201).send({ user, token })
     } catch (e) {
+        console.log(e)
         res.status(500).send(e)
     }
 })
@@ -31,7 +32,7 @@ router.post('/users/login', async (req, res) => {
 })
 
 router.get('/users/me', auth, async (req, res) => {
-    return res.status(200).send({ user: req.user })
+    return res.set('Content-Type', 'application/json').status(200).send({ user: req.user })
 })
 
 router.patch('/users/me', auth, async (req, res) => {
