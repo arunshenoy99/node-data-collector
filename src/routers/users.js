@@ -32,7 +32,16 @@ router.post('/users/login', async (req, res) => {
 })
 
 router.get('/users/me', auth, async (req, res) => {
-    return res.set('Content-Type', 'application/json').status(200).send({ user: req.user })
+    let avatar = '/img/user.png'
+    if (req.user.avatar) {
+        avatar = 'http://localhost:3000/users/me/avatar'
+    }
+    res.render('profile', {
+        name: req.user.name,
+        email: req.user.email,
+        _id: req.user._id,
+        avatar
+    })
 })
 
 router.patch('/users/me', auth, async (req, res) => {
@@ -115,7 +124,7 @@ router.get('/users/me/avatar', auth, async (req, res) => {
             return res.status(404).send()
         }
         res.set('Content-Type', 'image/png')
-        res.send(req.user.buffer)
+        res.send(req.user.avatar)
     } catch (e) {
         res.status(500).send()
     }

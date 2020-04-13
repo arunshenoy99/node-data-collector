@@ -8,22 +8,40 @@
         <link rel="stylesheet" href="/css/styles.css">
     </head>
     <body>
-        {{>header}}
+        <header>
+            {{>header}}
+            <div class="container">
+                <ol class="breadcrumb">
+                    <li class="active"><a href="/">Home</a></li>
+                </ol>
+            </div>
+            <div class="container">
+                <h1>Hey! Great to see you, Signup, Fill and start making money</h1><br><br>
+            </div>
+        </header>
         <form id="signup-form" class="container">
             <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="#name-input" class="col-form-label-lg">Name:</label>
-                    <input type="text" class="form-control" id="name-input">
+                <div class="form-group col-md-5">
+                    <label for="#fname-input" class="col-form-label-lg">First Name:</label>
+                    <input type="text" class="form-control" id="fname-input" placeholder="Enter First name here">
                 </div>
-                <div class="form-group col-md-6">
-                    <label for="#email-input" class="col-form-label-lg">Email:</label>
-                    <input type="email" class="form-control" id="email-input">
+                <div class="form-group col-md-2">
+                    <label for="#init-input">Initial</label>
+                    <input type="text" class="form-control" id="init-input" placeholder="Enter initial here">
+                </div>
+                <div class="form-group col-md-5">
+                    <label for="#lname-input" class="col-form-label-lg">Last Name:</label>
+                    <input type="text" class="form-control" id="lname-input" placeholder="Enter Last name here">
                 </div>
             </div>
             <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="#email-input">Email:</label>
+                    <input type="email" class="form-control" id="email-input" placeholder="Enter email here">
+                </div>
                 <div class="form-group col-md-6">
                     <label for="#password-input" class="col-form-label-lg">Password:</label>
-                    <input type="password" class="form-control" id="password-input">
+                    <input type="password" class="form-control" id="password-input" placeholder="Must be more than 6 characters">
                 </div>
                 <div class="form-group col-md-10">
                     <button type="submit" class="btn btn-primary">Sign Up</button>

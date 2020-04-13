@@ -7,7 +7,6 @@ const userSchema = new mongoose.Schema({
     name: {
         type: String,
         trim: true,
-        lowercase: true,
         minlength: 1 
     },
     email:{
@@ -70,9 +69,9 @@ userSchema.methods.generateAuthToken = async function () {
 userSchema.methods.toJSON = function () {
     const user = this
     const userObject = user.toObject()
-    delete user.password
-    delete user.avatar
-    delete user.tokens
+    delete userObject.password
+    delete userObject.avatar
+    delete userObject.tokens
     return userObject
 }
 

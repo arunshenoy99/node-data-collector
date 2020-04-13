@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/bootstrap.css">
+        <link rel="stylesheet" href="/css/styles.css">
+        <title>{{name}}</title>
+    </head>
+    <body>
+        <header>
+            {{>header}}
+            <div class="container">
+                <ol class="breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li class="active"><a href="/users/me">Me</a></li>
+                </ol>
+            </div>
+        </header>
+        <main>
+            {{>profile}}
+        </main>
+    </body>
+</html>
