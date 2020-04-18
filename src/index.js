@@ -4,6 +4,7 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 
 const userRouter = require('./routers/users')
+const formRouter = require('./routers/forms')
 require('./db/mongoose')
 
 const app = express()
@@ -20,13 +21,14 @@ app.use(express.json())
 app.use(express.static(publicPath))
 app.use(cookieParser())
 app.use(userRouter)
+app.use(formRouter)
 
-app.get('', (req, res) => {
-    res.render('index', {
-        title: 'Welcome !',
-        active1: 'active'
-    })
-})
+//app.get('', (req, res) => {
+  //  res.render('index', {
+    //    title: 'Welcome !',
+      //  active1: 'active'
+    //})
+//})
 
 //app.get('*', (req, res) => {
   //  res.render('404page')
