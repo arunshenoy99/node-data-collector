@@ -1,7 +1,30 @@
-.row{
-    width: 100%;
+.row-content {
+    margin: 0px auto;
+    padding: 50px 0px 50px 0px;
 }
 
-.container{
-    margin: auto;
+.row-header {
+    margin: 0px auto;
+    padding: 0px auto;
+}
+
+.jumbotron {
+    padding: 70px 30px 70px 30px;
+    margin: 0px auto;
+}
+
+.footer {
+    margin: 0px auto;
+    padding: 20px 0px 20px 0px;
+}
+
+.navbar-dark{
+    background-color: #512DA8;
+}
+
+
+
+body {
+    z-index: 0;
+    padding: 50px 0px 0px 0px;
 }

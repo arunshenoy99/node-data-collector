@@ -1,58 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{{title}}</title>
-        <link rel="stylesheet" href="/css/bootstrap_plain.css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0, shrink-to-fit=no">
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
         <link rel="stylesheet" href="/css/styles.css">
     </head>
     <body>
-        <header>
-            {{>header}}
+        {{>navbar}}
+        <header class="jumbotron">
             <div class="container">
-                <ol class="breadcrumb">
-                    <li class="active"><a href="/">Home</a></li>
-                </ol>
-            </div>
-            <div class="container">
-                <h1>Hey! Great to see you, Signup, Fill and start making money</h1><br><br>
+                <div class="row row-header">
+                    <div class="col-12">
+                        <h1>Node Data Collection</h1>
+                        <p>This is a website that collects survey data from users for user in data mining and warehousing</p>
+                    </div>
+                </div>
             </div>
         </header>
-        <form id="signup-form" class="container">
-            <div class="form-row">
-                <div class="form-group col-md-5">
-                    <label for="#fname-input" class="col-form-label-lg">First Name:</label>
-                    <input type="text" class="form-control" id="fname-input" placeholder="Enter First name here">
+
+        <main>
+
+            <form id="signup" class="row-content">
+                <div class="container">
+
+                    <div class="row justify-content-center row-content">
+                        <div class="col-auto">
+                            <h5>Sign Up to full some forms and start making money!</h5>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="firstname" class="col-12 col-md-2 col-form-label">Name:</label>
+                        <div class="col-12 col-md-4">
+                            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name">
+                        </div>
+                        <div class="col-12 col-md-2">
+                            <input type="text" class="form-control" id="initname" name="initname" placeholder="Initial">
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last Name">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="email" class="col-12 col-sm-2 col-form-label">Email:</label>
+                        <div class="col-12 col-md-5">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="password" class="col-12 col-sm-2 col-form-label">Password:</label>
+                         <div class="col-12 col-md-5">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="offset-md-2 col-md-10">
+                            <button type="submit" class="btn btn-primary">Sign Up</button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="offset-md-2 col-md-10">
+                            <p>Already a user? <a href="/login">Login here</a></p>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group col-md-2">
-                    <label for="#init-input">Initial</label>
-                    <input type="text" class="form-control" id="init-input" placeholder="Enter initial here">
-                </div>
-                <div class="form-group col-md-5">
-                    <label for="#lname-input" class="col-form-label-lg">Last Name:</label>
-                    <input type="text" class="form-control" id="lname-input" placeholder="Enter Last name here">
-                </div>
-            </div>
-            <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="#email-input">Email:</label>
-                    <input type="email" class="form-control" id="email-input" placeholder="Enter email here">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="#password-input" class="col-form-label-lg">Password:</label>
-                    <input type="password" class="form-control" id="password-input" placeholder="Must be more than 6 characters">
-                </div>
-                <div class="form-group col-md-10">
-                    <button type="submit" class="btn btn-primary">Sign Up</button>
-                </div>
-            </div>
-        </form>
-        <div class="container">
-            <p id="status"></p>
-        </div>
-        <script src="/js/jquery.min.js"></script> <!-- jquery libraries -->
-        <script src="/js/bootstrap.min.js"></script> <!-- bootsrap libraries -->
+            </form>
+        </main>
+        <footer class="footer">
+            {{>footer}}
+        </footer>
+        <script src="/js/jquery.slim.min.js"></script>
+        <script src="/js/popper.min.js"></script>
+         <script src="/js/bootstrap.min.js"></script>
         <script src="/js/app.js"></script>
     </body>
 </html>

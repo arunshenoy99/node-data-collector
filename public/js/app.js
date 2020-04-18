@@ -1,9 +1,9 @@
-const $signupForm = document.querySelector('#signup-form')
-const $fnameInput = $signupForm.querySelector('#fname-input')
-const $initInput = $signupForm.querySelector('#init-input')
-const $lnameInput = $signupForm.querySelector('#lname-input')
-const $emailInput = $signupForm.querySelector('#email-input')
-const $passwordInput = $signupForm.querySelector('#password-input')
+const $signupForm = document.querySelector('#signup')
+const $fnameInput = $signupForm.querySelector('#firstname')
+const $initInput = $signupForm.querySelector('#initname')
+const $lnameInput = $signupForm.querySelector('#lastname')
+const $emailInput = $signupForm.querySelector('#email')
+const $passwordInput = $signupForm.querySelector('#password')
 const $statusPara = document.querySelector('#status')
 $signupForm.addEventListener('submit', (e) => {
     e.preventDefault()
@@ -16,7 +16,7 @@ $signupForm.addEventListener('submit', (e) => {
     const user = { name, email, password}
     postData('http://localhost:3000/users', user)
     .then((response) => {
-        window.location.href = 'http://localhost:3000/users/me'
+        alert('Success')
     })
     .catch((e) => {
         console.log(e)

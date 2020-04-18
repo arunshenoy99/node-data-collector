@@ -23,13 +23,14 @@ app.use(userRouter)
 
 app.get('', (req, res) => {
     res.render('index', {
-        title: 'Welcome !'
+        title: 'Welcome !',
+        active1: 'active'
     })
 })
 
-app.get('*', (req, res) => {
-    res.render('404page')
-})
+//app.get('*', (req, res) => {
+  //  res.render('404page')
+//})
 
 
 const port = process.env.PORT || 3000
