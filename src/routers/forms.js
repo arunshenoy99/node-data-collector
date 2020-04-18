@@ -64,7 +64,9 @@ router.get('/forms', auth, async (req, res) => {
         })
         forms.push({name: form.name, formats})
     }
-    res.send(forms)
+    res.render('forms', {
+        title: 'Forms',
+        forms
+    })
 })
-
 module.exports = router

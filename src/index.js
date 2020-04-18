@@ -23,12 +23,12 @@ app.use(cookieParser())
 app.use(userRouter)
 app.use(formRouter)
 
-//app.get('', (req, res) => {
-  //  res.render('index', {
-    //    title: 'Welcome !',
-      //  active1: 'active'
-    //})
-//})
+app.get('', (req, res) => {
+      res.render('index', {
+      title: 'Welcome !',
+      active1: 'active'
+    })
+})
 
 //app.get('*', (req, res) => {
   //  res.render('404page')

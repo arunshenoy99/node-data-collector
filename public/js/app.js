@@ -16,7 +16,7 @@ $signupForm.addEventListener('submit', (e) => {
     const user = { name, email, password}
     postData('http://localhost:3000/users', user)
     .then((response) => {
-        alert('Success')
+        window.location.href = 'http://localhost:3000/forms'
     })
     .catch((e) => {
         console.log(e)
