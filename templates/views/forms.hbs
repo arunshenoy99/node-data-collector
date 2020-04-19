@@ -21,30 +21,35 @@
         </header>
 
         <main>
-            {{#each forms}}
-                <form id="{{name}}" class="row-content">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h5>Name: {{name}}</h5>
+            <div class="container">
+                {{#each forms}}
+                    <div class="row">
+                        <div class="col-12 col-sm-10">
+                            <div class="card">
+                                <h3 class="card-header bg-primary text-white">{{name}}</h3>
+                                <p id="{{name}}-status" class="card-header">Not yet submitted</p>
                             </div>
-                        </div>
-                        {{#each formats}}
-                            <div class="form-group row">
-                                <label for="#{{field}}" class="col-12 col-md-2 col-form-label">{{field}}</label>
-                                <div class="col-12 col-md-10">
-                                    <input type="{{type}}" name="{{field}}" placeholder="{{field}}" id="{{field}}" class="form-control">
-                                </div>
-                            </div>
-                         {{/each}}
-                        <div class="form-group row">
-                            <div class="offset-md-2 col-10">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                            <div class="card-body">
+                                <form id="{{name}}" name="{{name}}">
+                                    {{#each formats}}
+                                        <div class="form-group row">
+                                            <label for="#{{field}}" class="col-12 col-sm-2 col-form-label">{{field}}:</label>
+                                            <div class="col-12 col-sm-10">
+                                                <input type="{{type}}" id="{{field}}" name="{{field}}" class="form-control" placeholder="{{field}}">
+                                            </div>
+                                        </div>
+                                    {{/each}}
+                                    <div class="form-group row">
+                                        <div class="offset-sm-2 col-sm-10">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-                </form>
-            {{/each}}
+                {{/each}}
+            </div>
         </main>
         <footer>
             {{>footer}}

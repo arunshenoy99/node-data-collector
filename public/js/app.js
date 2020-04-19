@@ -15,8 +15,10 @@ $signupForm.addEventListener('submit', (e) => {
     const password = $passwordInput.value
     const user = { name, email, password}
     postData('http://localhost:3000/users', user)
-    .then((response) => {
-        window.location.href = 'http://localhost:3000/forms'
+    .then((status) => {
+        if (status === 201) {
+            window.location.href = 'http://localhost:3000/forms'
+        }
     })
     .catch((e) => {
         console.log(e)
@@ -33,5 +35,5 @@ postData = async (url = '', user = {}) => {
         },
         body: JSON.stringify(user)
     })
-    return response.json()
+    return response.status
 }

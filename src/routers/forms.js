@@ -28,7 +28,7 @@ router.post('/forms', auth, async (req, res) => {
 })
 
 router.post('/forms/submit', auth, async (req, res) => {
-    const name = req.body.name
+    const name = req.body.name.replace('-', ' ')
     const data = req.body.data
     try {
         const ledger = await Ledger.findOne({ name })
@@ -62,7 +62,7 @@ router.get('/forms', auth, async (req, res) => {
         fields.forEach((field) => {
             formats.push({ field, type: typeof(form.data[field])})
         })
-        forms.push({name: form.name, formats})
+        forms.push({name: form.name.replace(' ', '-'), formats})
     }
     res.render('forms', {
         title: 'Forms',
