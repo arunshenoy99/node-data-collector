@@ -14,10 +14,13 @@ $signupForm.addEventListener('submit', (e) => {
     const email = $emailInput.value
     const password = $passwordInput.value
     const user = { name, email, password}
-    postData('http://localhost:3000/users', user)
+    postData(`${location.href}users`, user)
     .then((status) => {
         if (status === 201) {
-            window.location.href = 'http://localhost:3000/forms'
+            const parts = location.href.split('//')
+            const parts2 = parts[1].split('/')
+            const host = parts2[0]
+            window.location.href = `http://${host}/forms`
         }
     })
     .catch((e) => {

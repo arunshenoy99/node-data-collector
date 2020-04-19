@@ -10,7 +10,7 @@ window.addEventListener('submit', (e) => {
         data[key] = value
     })
     const object = { name:e.target.id, data }
-    postData('http://localhost:3000/forms/submit', object)
+    postData(`${location.href}/submit`, object)
     .then((status) => {
         if(status === 200) {
             $formStatus.textContent = "Submitted"

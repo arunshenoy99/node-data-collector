@@ -11,7 +11,7 @@ router.post('/users', async (req, res) => {
     try {
         await user.save()
         const token = await user.generateAuthToken()
-        res.cookie('token', token).status(201).send({ user, token })
+        res.cookie('token', token, { expires: new Date(Date.now() + 900000), httpOnly: true}).status(201).send({ user, token })
     } catch (e) {
         console.log(e)
         res.status(500).send(e)
@@ -25,7 +25,7 @@ router.post('/users/login', async (req, res) => {
             return res.status(404).send({ error: 'Please check your username or password and try again' })
         }
         const token = await user.generateAuthToken()
-        res.cookie('token', token).send()
+        res.cookie('token', token, { expires: new Date(Date.now() + 900000), httpOnly: true}).send()
     } catch (e) {
         res.status(500).send(e)
     }

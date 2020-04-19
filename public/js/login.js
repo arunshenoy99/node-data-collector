@@ -7,10 +7,14 @@ $form.addEventListener('submit', (e) => {
     const email = $email.value.trim()
     const password = $password.value.trim()
     const data = { email, password }
-    postData('http://localhost:3000/users/login', data)
+    postData(`${window.location.href}`, data)
     .then((status) => {
         if (status === 200) {
-            window.location.href = 'http://localhost:3000/forms'
+            const parts = location.href.split('//')
+            console.log(parts[1])
+            const parts2 = parts[1].split('/')
+            const host = parts2[0]
+            window.location.href = `http://${host}/forms`
         }
     })
     .catch((e) => {
