@@ -31,9 +31,11 @@ app.get('', (req, res) => {
 })
 
 
-//app.get('*', (req, res) => {
-  //  res.render('404page')
-//})
+app.get('*', (req, res) => {
+    res.render('404page', {
+      title: 'OOPS'
+    })
+})
 
 
 const port = process.env.PORT || 3001
