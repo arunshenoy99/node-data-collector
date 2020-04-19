@@ -66,6 +66,7 @@ router.get('/forms', auth, async (req, res) => {
     }
     res.render('forms', {
         title: 'Forms',
+        active2: 'active',
         forms
     })
 })

@@ -11,11 +11,11 @@
 
 .jumbotron {
     padding: 70px 30px 70px 30px;
-    margin: 0px auto;
+    margin: 0px 0px 30px 0px;
 }
 
 .footer {
-    margin: 0px auto;
+    margin: auto;
     padding: 20px 0px 20px 0px;
 }
 

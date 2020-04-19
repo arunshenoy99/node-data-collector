@@ -22,13 +22,19 @@ router.post('/users/login', async (req, res) => {
     try {
         const user = await User.findByCredentials(req.body.email, req.body.password)
         if (!user) {
-            res.status(404).send({ error: 'Please check your username or password and try again' })
+            return res.status(404).send({ error: 'Please check your username or password and try again' })
         }
         const token = await user.generateAuthToken()
-        res.status(200).send({ user, token })
+        res.cookie('token', token).send()
     } catch (e) {
         res.status(500).send(e)
     }
+})
+
+router.get('/users/login', async (req, res) => {
+    res.render('login', {
+        title: 'Login'
+    })
 })
 
 router.get('/users/me', auth, async (req, res) => {
@@ -40,6 +46,7 @@ router.get('/users/me', auth, async (req, res) => {
         name: req.user.name,
         email: req.user.email,
         _id: req.user._id,
+        active4: 'active',
         avatar
     })
 })

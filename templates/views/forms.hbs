@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <title>{{title}}</title>
         <link rel="stylesheet" href="/css/bootstrap.min.css">
         <link rel="stylesheet" href="/css/styles.css">
     </head>
@@ -21,6 +22,13 @@
         </header>
 
         <main>
+            <div class="container">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item active"><a href="#">Forms</a></li>
+                </ol>
+                </div>
+            </div>
             <div class="container">
                 {{#each forms}}
                     <div class="row">
