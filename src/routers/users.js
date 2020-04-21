@@ -42,11 +42,25 @@ router.get('/users/me', auth, async (req, res) => {
     if (req.user.avatar) {
         avatar = 'http://localhost:3000/users/me/avatar'
     }
+    await req.user.populate('forms').execPopulate()
+    let forms = []
+    req.user.forms.forEach((form) => {
+        const data = []
+        const fields = Object.keys(form.data)
+        fields.forEach((field) => {
+            data.push({ field, value: form.data[field] })
+        })
+        forms.push({ name: form.name.replace(' ', '-'), data })
+    })
+    if (forms.length === 0) {
+        forms = true
+    }
     res.render('profile', {
         name: req.user.name,
         email: req.user.email,
         _id: req.user._id,
         active4: 'active',
+        forms,
         avatar
     })
 })

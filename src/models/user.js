@@ -37,6 +37,12 @@ const userSchema = new mongoose.Schema({
     }]
 })
 
+userSchema.virtual('forms', {
+    foreignField: 'owner',
+    localField: '_id',
+    ref: 'Form'
+})
+
 userSchema.pre('save', async function (next) {
     const user = this
     if (user.isModified('password')) {

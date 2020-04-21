@@ -35,6 +35,30 @@
                     </div>
                 </div>
             </div>
+            <div class="container">
+                <h4>Your responses</h4>
+                {{#if forms}}
+                    <p>You have not filled any forms yet :(... Let's get you started</p>
+                    <p>Visit this <a href="/forms">page</a> to start filling out forms</p>
+                {{/if}}
+                {{#each forms}}
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <h3 class="card-header bg-primary text-white">{{name}}</h3>
+                                <div class="card-body">
+                                        <dl class="row">
+                                            {{#each data}}
+                                                <dt class="col-6">{{field}}</dt>
+                                                <dd class="col-6">{{value}}</dd>
+                                            {{/each}}
+                                        </dl>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
         </main>
         <footer class="footer" style="margin-top: 250px;">
             {{>footer}}
