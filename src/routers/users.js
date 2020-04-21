@@ -31,42 +31,6 @@ router.post('/users/login', async (req, res) => {
     }
 })
 
-router.get('/users/login', async (req, res) => {
-    res.render('login', {
-        title: 'Login'
-    })
-})
-
-router.get('/users/me', auth, async (req, res) => {
-    let avatar = '/img/user.png'
-    if (req.user.avatar) {
-        avatar = 'http://localhost:3000/users/me/avatar'
-    }
-    await req.user.populate('forms').execPopulate()
-    let forms = []
-    let noForm = false
-    req.user.forms.forEach((form) => {
-        const data = []
-        const fields = Object.keys(form.data)
-        fields.forEach((field) => {
-            data.push({ field, value: form.data[field] })
-        })
-        forms.push({ name: form.name.replace(' ', '-'), data })
-    })
-    if (forms.length === 0) {
-        noForm = true
-    }
-    res.render('profile', {
-        name: req.user.name,
-        email: req.user.email,
-        _id: req.user._id,
-        active4: 'active',
-        forms,
-        noForm,
-        avatar
-    })
-})
-
 router.patch('/users/me', auth, async (req, res) => {
     const allowedUpdates = ['name', 'email', 'password', 'avatar']
     const updates = Object.keys(req.body)
@@ -151,6 +115,47 @@ router.get('/users/me/avatar', auth, async (req, res) => {
     } catch (e) {
         res.status(500).send()
     }
+})
+
+router.get('/users/login', async (req, res) => {
+    let notLoggedIn = false
+    if (!req.cookies.token) {
+        notLoggedIn = true
+    }
+    res.render('login', {
+        title: 'Login',
+        notLoggedIn
+    })
+})
+  
+router.get('/users/me', auth, async (req, res) => {
+    let avatar = '/img/user.png'
+    if (req.user.avatar) {
+        avatar = 'http://localhost:3000/users/me/avatar'
+    }
+    await req.user.populate('forms').execPopulate()
+    let forms = []
+    let noForm = false
+    req.user.forms.forEach((form) => {
+        const data = []
+        const fields = Object.keys(form.data)
+        fields.forEach((field) => {
+            data.push({ field, value: form.data[field] })
+        })
+        forms.push({ name: form.name.replace(' ', '-'), data })
+    })
+    if (forms.length === 0) {
+        noForm = true
+    }
+    res.render('profile', {
+        name: req.user.name,
+        email: req.user.email,
+        _id: req.user._id,
+        active4: 'active',
+        forms,
+        noForm,
+        avatar
+    })
 })
 
 module.exports = router
