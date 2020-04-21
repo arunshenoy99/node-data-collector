@@ -95,7 +95,7 @@ router.post('/users/me/avatar', auth, upload.single('avatar'), async (req, res) 
     req.user.avatar = buffer
     try {
         await req.user.save()
-        res.send()
+        res.redirect('/users/me')
     } catch (e) {
         res.status(500).send()
     }
@@ -131,7 +131,7 @@ router.get('/users/login', async (req, res) => {
 router.get('/users/me', auth, async (req, res) => {
     let avatar = '/img/user.png'
     if (req.user.avatar) {
-        avatar = 'http://localhost:3000/users/me/avatar'
+        avatar = `http://${req.get('host')}/users/me/avatar`
     }
     await req.user.populate('forms').execPopulate()
     let forms = []
