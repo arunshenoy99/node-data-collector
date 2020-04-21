@@ -44,6 +44,7 @@ router.get('/users/me', auth, async (req, res) => {
     }
     await req.user.populate('forms').execPopulate()
     let forms = []
+    let noForm = false
     req.user.forms.forEach((form) => {
         const data = []
         const fields = Object.keys(form.data)
@@ -53,7 +54,7 @@ router.get('/users/me', auth, async (req, res) => {
         forms.push({ name: form.name.replace(' ', '-'), data })
     })
     if (forms.length === 0) {
-        forms = true
+        noForm = true
     }
     res.render('profile', {
         name: req.user.name,
@@ -61,6 +62,7 @@ router.get('/users/me', auth, async (req, res) => {
         _id: req.user._id,
         active4: 'active',
         forms,
+        noForm,
         avatar
     })
 })

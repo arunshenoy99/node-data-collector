@@ -12,7 +12,7 @@
         
         <header class="jumbotron">
             <div class="container">
-                <div class="row">
+                <div class="row row-content">
                     <div class="col-12">
                         <h1>Ready To Fill Some Forms??</h1>
                         <p>Scoll down and fill the forms you like</p>
@@ -30,6 +30,9 @@
                 </div>
             </div>
             <div class="container">
+                {{#if noForm}}
+                    <p>Hurray! There are no new forms available to fill, view the forms you have filled <a href="/users/me">here</a>.</p>
+                {{/if}}
                 {{#each forms}}
                     <div class="row">
                         <div class="col-12 col-sm-10">
@@ -59,7 +62,7 @@
                 {{/each}}
             </div>
         </main>
-        <footer>
+        <footer class="fixed-bottom">
             {{>footer}}
         </footer>
 

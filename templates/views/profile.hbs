@@ -37,7 +37,7 @@
             </div>
             <div class="container">
                 <h4>Your responses</h4>
-                {{#if forms}}
+                {{#if noForm}}
                     <p>You have not filled any forms yet :(... Let's get you started</p>
                     <p>Visit this <a href="/forms">page</a> to start filling out forms</p>
                 {{/if}}
@@ -60,7 +60,7 @@
                 {{/each}}
             </div>
         </main>
-        <footer class="footer" style="margin-top: 250px;">
+        <footer class="footer">
             {{>footer}}
         </footer>
         <script src="/js/jquery.slim.min.js"></script>

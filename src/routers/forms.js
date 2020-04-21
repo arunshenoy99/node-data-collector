@@ -54,9 +54,14 @@ router.post('/forms/submit', auth, async (req, res) => {
 
 router.get('/forms', auth, async (req, res) => {
     const forms = []
+    let noForm = false
     const ledgers = await Ledger.find({})
     for (var i = 0; i < ledgers.length; i++) {
-        const form = await Form.findById(ledgers[i].forms[0].form)
+        const userForm = await Form.findOne({ name: ledgers[i].name, owner: req.user._id })
+        if (userForm) {
+            continue
+        }
+        const form = await Form.findOne({ name: ledgers[i].name })
         const fields = Object.keys(form.data)
         const formats = []
         fields.forEach((field) => {
@@ -64,9 +69,13 @@ router.get('/forms', auth, async (req, res) => {
         })
         forms.push({name: form.name.replace(' ', '-'), formats})
     }
+    if (forms.length === 0) {
+        noForm = true
+    }
     res.render('forms', {
         title: 'Forms',
         active2: 'active',
+        noForm,
         forms
     })
 })
