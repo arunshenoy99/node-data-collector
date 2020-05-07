@@ -67,7 +67,7 @@ router.get('/forms', auth, async (req, res) => {
         fields.forEach((field) => {
             formats.push({ field, type: typeof(form.data[field])})
         })
-        forms.push({name: form.name.replace(' ', '-'), formats})
+        forms.push({name: form.name.replace(' ', '-'), formats, reward: form.reward})
     }
     if (forms.length === 0) {
         noForm = true

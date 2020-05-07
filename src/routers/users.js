@@ -1,6 +1,7 @@
 const express = require('express')
 const User = require('../models/user')
 const auth = require('../middleware/auth')
+const serverAuth = require('../utils/serverAuth')
 const multer = require('multer')
 const sharp = require('sharp')
 
@@ -60,7 +61,7 @@ router.delete('/users/me', auth, async (req, res) => {
 
 router.post('/users/logout', auth, async (req, res) => {
     try {
-        req.user.tokens.filter((token) => token != req.token)
+        req.user.tokens = req.user.tokens.filter((token) => token.token != req.token)
         await req.user.save()
         res.send()
     } catch (e) {
@@ -118,9 +119,12 @@ router.get('/users/me/avatar', auth, async (req, res) => {
 })
 
 router.get('/users/login', async (req, res) => {
-    let notLoggedIn = false
-    if (!req.cookies.token) {
-        notLoggedIn = true
+    let notLoggedIn = true
+    if (req.cookies.token) {
+        const auth = await serverAuth(req.cookies.token)
+        if (auth) {
+        notLoggedIn = false
+        }
     }
     res.render('login', {
         title: 'Login',
@@ -142,7 +146,7 @@ router.get('/users/me', auth, async (req, res) => {
         fields.forEach((field) => {
             data.push({ field, value: form.data[field] })
         })
-        forms.push({ name: form.name.replace(' ', '-'), data })
+        forms.push({ name: form.name.replace(' ', '-'), data, reward: form.reward })
     })
     if (forms.length === 0) {
         noForm = true

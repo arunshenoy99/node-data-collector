@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser')
 const userRouter = require('./routers/users')
 const formRouter = require('./routers/forms')
 require('./db/mongoose')
-const auth = require('./middleware/auth')
+const serverAuth = require('./utils/serverAuth')
 
 const app = express()
 
@@ -24,10 +24,16 @@ app.use(cookieParser())
 app.use(userRouter)
 app.use(formRouter)
 
-app.get('', (req, res) => {
+
+
+
+app.get('', async (req, res) => {
   let notLoggedIn = true
   if (req.cookies.token) {
-    notLoggedIn = false
+    const auth = await serverAuth(req.cookies.token)
+    if (auth) {
+      notLoggedIn = false
+    }
   }
   res.render('index', {
     title: 'NDC',

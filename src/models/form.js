@@ -11,6 +11,10 @@ const formSchema = new mongoose.Schema({
         type: Object,
         required: true
     },
+    reward: {
+        type: Number,
+        default: 10
+    },
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,

@@ -18,6 +18,10 @@
                     <li class="nav-item {{active4}}"><a href="/users/me" class="nav-link">Me</a></li>
                 {{/if}}
             </ul>
+            {{#if notLoggedIn}}
+            {{else}}
+                <span class="navbar-text"><a href="#" id="logout">Logout</a></span>
+            {{/if}}
         </div>
         
     </div>
